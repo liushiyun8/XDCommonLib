@@ -42,15 +42,12 @@ dependencies {
 
 publish {
     userOrg = 'liushiyun'
-    groupId = 'com.emp.xd'
+    groupId = 'com.xd.android'
     artifactId = 'commonlib'
-    publishVersion = '1.0.2'
+    publishVersion = '1.0.0'
     desc 'xd common lib'
 //    description = 'Super duper easy way to release your Android and other artifacts to bintray'
     website = "https://github.com/liushiyun8/XDCommonLib"
-    bintrayUser 'liushiyun'
-    bintrayKey '230fb31920f228a487e82bf138e220a6ec6f5f72'
-    dryRun false
 }
 
 def libVersion = '1.2.0'
