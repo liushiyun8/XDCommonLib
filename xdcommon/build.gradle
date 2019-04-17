@@ -9,9 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-
+        versionCode 2
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -31,22 +30,41 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    compileOnly 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:exifinterface:28.0.0'
 }
 
 publish {
     userOrg = 'liushiyun'
-    groupId = 'com.emp.xdlib'
-    artifactId = 'common'
-    publishVersion = '1.0.0'
+    groupId = 'com.emp.xd'
+    artifactId = 'commonlib'
+    publishVersion = '1.0.2'
     desc 'xd common lib'
 //    description = 'Super duper easy way to release your Android and other artifacts to bintray'
-    website = "https://github.com/liushiyun8"
+    website = "https://github.com/liushiyun8/XDCommonLib"
     bintrayUser 'liushiyun'
     bintrayKey '230fb31920f228a487e82bf138e220a6ec6f5f72'
     dryRun false
+}
+
+def libVersion = '1.2.0'
+task makeJar(type: Jar) {
+    // 指定生成的jar名
+    def rootDir = project.getRootDir();
+    def parentDir = project.getRootDir().getParentFile().getAbsolutePath();
+
+    delete 'build/libs/*.*'
+    archiveName 'android-common-' + libVersion + '.jar'
+    destinationDir = file('build/libs')
+    // 从哪里打包class文件
+    from('build/intermediates/classes/release/')
+    // 打包到jar后的目录结构
+    // 去掉不需要打包的目录和文件
+    exclude('test/', 'BuildConfig.class', 'R.class', 'R\$*.class', 'META-INF/')
 }

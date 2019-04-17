@@ -2,6 +2,7 @@
 
 buildscript {
     repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central/'}
         google()
         jcenter()
         
@@ -17,8 +18,10 @@ buildscript {
 
 allprojects {
     repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central/'}
         google()
         jcenter()
+        maven{url "https://jitpack.io"}
     }
     tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
